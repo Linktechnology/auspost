@@ -299,6 +299,14 @@ class Auspost {
 		return true;
 	}
 
+    public function trackItems($trackingIds) {
+
+        $this->sendGetRequest("track?tracking_ids=$trackingIds");
+        $data = $this->convertResponse($this->getResponse()->data);
+        $this->closeSocket();
+        return $data;
+    }
+
 	/**
 	 * Get the base URL for the api connection
 	 *
